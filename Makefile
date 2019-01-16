@@ -42,6 +42,10 @@ MAIN_FILE := $(SOURCEPATH)/$(MAIN)
 # e.g. com/Main.java becomes com.Main
 MAIN_CLASS := $(subst /,.,$(MAIN:.java=))
 
+# Where to place the generated script
+SCRIPTDIR ?= scripts
+SCRIPT := $(SCRIPTDIR)/run
+
 # }}}
 
 # COMPILERS & FLAGS {{{
@@ -55,7 +59,7 @@ JRFLAGS := cf $(JAR_FILE)
 
 # Canned recipe for running java program
 define run_java
--$(JV) $(JVFLAGS) $(MAIN_CLASS)
+$(JV) $(JVFLAGS) $(MAIN_CLASS)
 endef
 
 # }}}
@@ -71,6 +75,9 @@ all: $(BIN)
 # Make a jar archive
 jar: $(JAR_FILE)
 
+# Make a runner script
+script: $(SCRIPT)
+
 # How to build the program
 $(BIN): $(SRC) | $(BINDIR)
 	$(JC) $(JCFLAGS) $(MAIN_FILE)
@@ -83,20 +90,28 @@ $(BINDIR): ;
 $(JAR_FILE): $(BIN)
 	$(JR) $(JRFLAGS) $(BIN)
 
+$(SCRIPT): $(BIN) | $(SCRIPTDIR)
+	printf '%s\n' '#! /bin/sh' '' 'exec $(run_java) "$$@"' > $@
+	[ -x $@ ] || chmod u+x $@
+
+# Create the scriptdir necessary for .class files
+$(SCRIPTDIR): ;
+	mkdir $@
+
 # Cleanup
 .PHONY: clean
 clean:
-	-rm -rf $(BINDIR) $(JAR_FILE)
+	-rm -rf $(BINDIR) $(JAR_FILE) $(SCRIPTDIR)
 
 # Run the java program
 .PHONY: run
 run: $(BIN)
-	$(run_java)
+	-$(run_java)
 
 # Run the java program with assertions enabled
 .PHONY: debug_run
 debug_run: JVFLAGS += -ea
 debug_run: $(BIN)
-	$(run_java)
+	-$(run_java)
 
 # }}}
