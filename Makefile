@@ -82,8 +82,8 @@ script: $(SCRIPT)
 $(BIN): $(SRC) | $(BINDIR)
 	$(JC) $(JCFLAGS) $(MAIN_FILE)
 
-# Create the bindir necessary for .class files
-$(BINDIR): ;
+# Create the necessary directories
+$(SCRIPTDIR) $(BINDIR): ;
 	mkdir $@
 
 # How to make the jar archive
@@ -93,10 +93,6 @@ $(JAR_FILE): $(BIN)
 $(SCRIPT): $(BIN) | $(SCRIPTDIR)
 	printf '%s\n' '#! /bin/sh' '' 'exec $(run_java) "$$@"' > $@
 	[ -x $@ ] || chmod u+x $@
-
-# Create the scriptdir necessary for .class files
-$(SCRIPTDIR): ;
-	mkdir $@
 
 # Cleanup
 .PHONY: clean
