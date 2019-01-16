@@ -31,10 +31,10 @@ SRC := $(shell find $(SOURCEPATH) -iname '*.java')
 BIN := $(subst $(SOURCEPATH),$(BINDIR),$(SRC:.java=.class))
 
 # Jar to create
-JAR_FILE ?= <PLACEHOLDER>.jar
+JAR_FILE ?= Nix.jar
 # File under $(SOURCEPATH) containing a declaration of
 # public static void main(String[] args)
-MAIN ?= <PLACEHOLDER>.java
+MAIN ?= nix/Main.java
 
 # Generate full path to $(MAIN)
 MAIN_FILE := $(SOURCEPATH)/$(MAIN)
