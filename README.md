@@ -8,6 +8,8 @@ With that in mind, it provides a ready-to-go Makefile, along with a complete
 commented and should prove fairly straightforward; I recommend [reading the
 docs][make] if there are questions.
 
+Also check the `.gitignore` for some suggestions.
+
 ## Makefile
 
 Using the Makefile requires editing just a few key lines, all of which are
