@@ -26,17 +26,17 @@ It assumes the following project structure
 - `src` contains `.java` source files
 - `lib` contains `.jar` files (libraries) on which the source depends
 - `bin` will contain generated `.class` files (and is automatically generated)
-- `scripts` will contain a file named `run` that can be executed to run the
-  program as if were a regular CLI binary
+- `scripts` will contain a generated file named `run` that can be executed to
+  run the program as if were a regular CLI binary
 
 ### Key Targets
 
-1. `all`: the default. Builds the class files
-1. `jar`: make the 'jarchive'
-1. `script`: make the script
-1. `clean`: delete any generated files
-1. `run`: run the main class
-1. `debug_run`: run with assertions enabled
+-. `all`: the default. Builds the class files
+-. `jar`: make the 'jarchive'
+-. `script`: make the script
+-. `clean`: delete any generated files
+-. `run`: run the main class
+-. `debug_run`: run with assertions enabled
 
 __Vim User?__
 
