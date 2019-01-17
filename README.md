@@ -31,12 +31,13 @@ It assumes the following project structure
 
 ### Key Targets
 
--. `all`: the default. Builds the class files
--. `jar`: make the 'jarchive'
--. `script`: make the script
--. `clean`: delete any generated files
--. `run`: run the main class
--. `debug_run`: run with assertions enabled
+- `all`: the default. Builds the class files
+- `jar`: make the 'jarchive'
+- `script`: make the script
+- `clean`: delete any generated files
+- `run`: run the main class
+- `debug_run`: run with assertions enabled
+- `jdb`: run the debugger (jdb)
 
 __Vim User?__
 

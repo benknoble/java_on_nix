@@ -56,6 +56,8 @@ JV := java
 JVFLAGS := -cp $(LIBS):$(BINDIR)
 JR := jar
 JRFLAGS := cf $(JAR_FILE)
+JDB := jdb
+JDBFLAGS := -classpath $(LIBS):$(BINDIR) -sourcepath $(SOURCEPATH) $(MAIN_CLASS)
 
 # Canned recipe for running java program
 define run_java
@@ -109,5 +111,10 @@ run: $(BIN)
 debug_run: JVFLAGS += -ea
 debug_run: $(BIN)
 	-$(run_java)
+
+# Run the debugger
+.PHONY: jdb
+jdb: $(BIN)
+	$(JDB) $(JDBFLAGS)
 
 # }}}
