@@ -39,6 +39,13 @@ It assumes the following project structure
 - `debug_run`: run with assertions enabled
 - `jdb`: run the debugger (jdb)
 
+### Related
+
+I've got a script to download the newest version of the Makefile [here][script];
+it will even save and restore your changes to `JAR_FILE` and `MAIN`. If you
+change lots of things, though, I wouldn't recommend using it. This is a place
+where it's good to have things in version control.
+
 __Vim User?__
 
 See my [Dotfiles][Dotfiles] for some examples of ways I make coding Java in Vim
@@ -47,3 +54,4 @@ easier. Of particular relevance is my [`javamake` compiler plugin][compiler].
 [make]: https://www.gnu.org/software/make/manual/html_node/index.html#Top
 [Dotfiles]: https://github.com/benknoble/Dotfiles/tree/master/links/vim
 [compiler]: https://github.com/benknoble/Dotfiles/blob/master/links/vim/compiler/javamake.vim
+[script]: https://github.com/benknoble/Dotfiles/blob/master/links/bin/java-update-mfile
