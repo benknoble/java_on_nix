@@ -36,8 +36,6 @@ JAR_FILE ?= Nix.jar
 # public static void main(String[] args)
 MAIN ?= nix/Main.java
 
-# Generate full path to $(MAIN)
-MAIN_FILE := $(SOURCEPATH)/$(MAIN)
 # Generate class name for CLI
 # e.g. com/Main.java becomes com.Main
 MAIN_CLASS := $(subst /,.,$(MAIN:.java=))
@@ -82,7 +80,7 @@ script: $(SCRIPT)
 
 # How to build the program
 $(BIN): $(SRC) | $(BINDIR)
-	$(JC) $(JCFLAGS) $(MAIN_FILE)
+	$(JC) $(JCFLAGS) $(SRC)
 
 # Create the necessary directories
 $(SCRIPTDIR) $(BINDIR): ;
