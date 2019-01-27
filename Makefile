@@ -107,8 +107,7 @@ run: $(BIN)
 # Run the java program with assertions enabled
 .PHONY: debug_run
 debug_run: JVFLAGS += -ea
-debug_run: $(BIN)
-	-$(run_java)
+debug_run: run
 
 # Run the debugger
 .PHONY: jdb
