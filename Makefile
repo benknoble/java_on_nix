@@ -80,7 +80,7 @@ script: $(SCRIPT)
 
 # How to build the program
 $(BIN): $(SRC) | $(BINDIR)
-	$(JC) $(JCFLAGS) $(SRC)
+	$(JC) $(JCFLAGS) $^
 
 # Create the necessary directories
 $(SCRIPTDIR) $(BINDIR): ;
@@ -88,7 +88,7 @@ $(SCRIPTDIR) $(BINDIR): ;
 
 # How to make the jar archive
 $(JAR_FILE): $(BIN)
-	$(JR) $(JRFLAGS) $(BIN)
+	$(JR) $(JRFLAGS) $^
 
 $(SCRIPT): $(BIN) | $(SCRIPTDIR)
 	printf '%s\n' '#! /bin/sh' '' 'exec $(run_java) "$$@"' > $@
