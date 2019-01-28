@@ -26,17 +26,15 @@ It assumes the following project structure
 - `src` contains `.java` source files
 - `lib` contains `.jar` files (libraries) on which the source depends
 - `bin` will contain generated `.class` files (and is automatically generated)
-- `scripts` will contain a generated file named `run` that can be executed to
-  run the program as if were a regular CLI binary
+- `scripts` will contain generated files that can be executed to run the program
+  as if it were a regular CLI binary, passing along all arguments
 
 ### Key Targets
 
 - `all`: the default. Builds the class files
 - `jar`: make the 'jarchive'
-- `script`: make the script
+- `runners`: make the scripts
 - `clean`: delete any generated files
-- `run`: run the main class
-- `debug_run`: run with assertions enabled
 - `jdb`: run the debugger (jdb)
 
 ### Related

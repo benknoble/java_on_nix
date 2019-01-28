@@ -42,7 +42,8 @@ MAIN_CLASS := $(subst /,.,$(MAIN:.java=))
 
 # Where to place the generated script
 SCRIPTDIR ?= scripts
-SCRIPT := $(SCRIPTDIR)/run
+RUN := $(SCRIPTDIR)/run
+DEBUG := $(SCRIPTDIR)/debug
 
 # }}}
 
@@ -70,13 +71,15 @@ endef
 
 # Build the program
 # This is the default
+.PHONY: all
 all: $(BIN)
 
 # Make a jar archive
+.PHONY: jar
 jar: $(JAR_FILE)
 
-# Make a runner script
-script: $(SCRIPT)
+.PHONY: runners
+runners: $(RUN) $(DEBUG)
 
 # How to build the program
 $(BIN): $(SRC) | $(BINDIR)
@@ -84,13 +87,14 @@ $(BIN): $(SRC) | $(BINDIR)
 
 # Create the necessary directories
 $(SCRIPTDIR) $(BINDIR): ;
-	mkdir $@
+	[ -d "$@" ] || mkdir $@
 
 # How to make the jar archive
 $(JAR_FILE): $(BIN)
 	$(JR) $(JRFLAGS) $^
 
-$(SCRIPT): $(BIN) | $(SCRIPTDIR)
+$(DEBUG): JVFLAGS += -ea
+$(RUN) $(DEBUG): $(BIN) | $(SCRIPTDIR)
 	printf '%s\n' '#! /bin/sh' '' 'exec $(run_java) "$$@"' > $@
 	[ -x $@ ] || chmod u+x $@
 
@@ -98,16 +102,6 @@ $(SCRIPT): $(BIN) | $(SCRIPTDIR)
 .PHONY: clean
 clean:
 	-rm -rf $(BINDIR) $(JAR_FILE) $(SCRIPTDIR)
-
-# Run the java program
-.PHONY: run
-run: $(BIN)
-	-$(run_java)
-
-# Run the java program with assertions enabled
-.PHONY: debug_run
-debug_run: JVFLAGS += -ea
-debug_run: run
 
 # Run the debugger
 .PHONY: jdb
