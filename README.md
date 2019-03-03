@@ -17,6 +17,8 @@ variable definitions:
 
 - `JAR_FILE` controls the name of the produced jar
 - `MAIN` should be the path under `src` to a java file with the `main` method
+- `TEST` should be the path under `src` to a java file with a `main` method that
+  invokes whatever test setup you have
 
 Other variables can be changed in the Makefile or even set as environment
 variables, but should "just work" by default.
@@ -34,6 +36,7 @@ It assumes the following project structure
 - `all`: the default. Builds the class files
 - `jar`: make the 'jarchive'
 - `runners`: make the scripts
+- `test`: run the tests
 - `clean`: delete any generated files
 - `jdb`: run the debugger (jdb)
 
