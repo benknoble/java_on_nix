@@ -35,10 +35,13 @@ JAR_FILE ?= Nix.jar
 # File under $(SOURCEPATH) containing a declaration of
 # public static void main(String[] args)
 MAIN ?= nix/Main.java
+# File to run for testing
+TEST ?= tests/Test.java
 
 # Generate class name for CLI
 # e.g. com/Main.java becomes com.Main
 MAIN_CLASS := $(subst /,.,$(MAIN:.java=))
+TEST_CLASS := $(subst /,.,$(TEST:.java=))
 
 # Where to place the generated script
 SCRIPTDIR ?= scripts
@@ -80,6 +83,11 @@ jar: $(JAR_FILE)
 
 .PHONY: runners
 runners: $(RUN) $(DEBUG)
+
+.PHONY: test
+test: MAIN_CLASS := $(TEST_CLASS)
+test: $(BIN)
+	$(run_java)
 
 # How to build the program
 $(BIN): $(SRC) | $(BINDIR)
