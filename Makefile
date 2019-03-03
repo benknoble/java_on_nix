@@ -38,10 +38,12 @@ MAIN ?= nix/Main.java
 # File to run for testing
 TEST ?= tests/Test.java
 
+classify = $(subst /,.,$($(1):.java=))
+
 # Generate class name for CLI
 # e.g. com/Main.java becomes com.Main
-MAIN_CLASS := $(subst /,.,$(MAIN:.java=))
-TEST_CLASS := $(subst /,.,$(TEST:.java=))
+MAIN_CLASS := $(call classify,MAIN)
+TEST_CLASS := $(call classify,TEST)
 
 # Where to place the generated script
 SCRIPTDIR ?= scripts
