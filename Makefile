@@ -13,6 +13,14 @@ SHELL = /bin/sh
 
 # }}}
 
+# MACROS & FUNCTIONS {{{
+
+# Generate class name for CLI
+# e.g. com/Main.java becomes com.Main
+classify = $(subst /,.,$($(1):.java=))
+
+# }}}
+
 # PROJECT STRUCTURE {{{
 
 # Where the source lives (.java)
@@ -37,8 +45,6 @@ JAR_FILE ?= Nix.jar
 MAIN ?= nix/Main.java
 # File to run for testing
 TEST ?= tests/Test.java
-
-classify = $(subst /,.,$($(1):.java=))
 
 # Generate class name for CLI
 # e.g. com/Main.java becomes com.Main
