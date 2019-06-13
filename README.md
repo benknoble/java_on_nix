@@ -1,5 +1,7 @@
 # Java on \*nix
 
+[![This project is considered finished](https://img.shields.io/badge/status-finished-success.svg)](https://benknoble.github.io/status/finished/)
+
 This is a small sample project that seeks to provide a template or starter kit
 for java projects on \*nix.
 
