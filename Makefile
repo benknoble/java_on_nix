@@ -61,7 +61,7 @@ DEBUG := $(SCRIPTDIR)/debug
 # COMPILERS & FLAGS {{{
 
 JC := javac
-JCFLAGS := -g -cp $(LIBS) -sourcepath $(SOURCEPATH) -d $(BINDIR)
+JCFLAGS := -g -Xlint -cp $(LIBS) -sourcepath $(SOURCEPATH) -d $(BINDIR)
 JV := java
 JVFLAGS := -cp $(LIBS):$(BINDIR)
 JR := jar
